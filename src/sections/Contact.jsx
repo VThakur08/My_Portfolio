@@ -48,7 +48,7 @@ const Contact = () => {
           <div className="contact-container">
             <h3 className="head-text mt-[-22px] sm:mt-[-22px] md:mt-[-22px] lg:mt-[-4px] xl:mt-[-2px]">Let's Connect</h3>
             <p className="text-lg text-white-600 mt-3">
-              Looking for a fresh perspective on web development or UI/UX design? I'm open to opportunities! Whether it&#39;s building a new project or enhancing an existing one, feel free to reach out.
+              As an aspiring web developer and UI/UX designer, I’m eager to apply my skills and contribute to innovative projects. Actively seeking opportunities to grow, collaborate, and make an impact.
             </p>
 
             <form ref={formRef} onSubmit={handleSubmit} className="mt-3 md:mt-6 lg:mt-12 flex flex-col space-y-7">
