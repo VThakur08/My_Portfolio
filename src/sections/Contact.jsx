@@ -41,17 +41,15 @@ const Contact = () => {
   };
 
   return (
-      <section className="c-space my-20">
-        <div className="relative min-h-screen flex items-center justify-center flex-col">
-          <img src="/assets/terminal.png" alt="terminal-bg" className="absolute inset-0 min-h-screen" />
-
-          <div className="contact-container">
-            <h3 className="head-text mt-[-22px] sm:mt-[-22px] md:mt-[-22px] lg:mt-[-4px] xl:mt-[-2px]">Let's Connect</h3>
-            <p className="text-lg text-white-600 mt-3">
-              As an aspiring web developer and UI/UX designer, I’m eager to apply my skills and contribute to innovative projects. Actively seeking opportunities to grow, collaborate, and make an impact.
+      <section className="c-space my-32" id="contact">
+        <div className="relative flex items-center justify-center flex-col py-20">
+          <div className="contact-container max-w-2xl">
+            <h2 className="head-text text-center">Let's Work Together</h2>
+            <p className="text-lg text-white/70 mt-6 text-center font-light leading-relaxed">
+              I&apos;m always interested in hearing about new projects and opportunities. Feel free to reach out if you&apos;d like to collaborate or just say hi!
             </p>
 
-            <form ref={formRef} onSubmit={handleSubmit} className="mt-3 md:mt-6 lg:mt-12 flex flex-col space-y-7">
+            <form ref={formRef} onSubmit={handleSubmit} className="mt-8 md:mt-12 flex flex-col space-y-6">
               <label className="space-y-3">
                 <span className="field-label">Full Name</span>
                 <input

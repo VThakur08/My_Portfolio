@@ -30,11 +30,16 @@ const Projects = () => {
   const currentProject = myProjects[selectedProjectIndex];
 
   return (
-    <section className="c-space my-20">
-      <p className="head-text">My Projects</p>
+    <section className="c-space my-32" id="projects">
+      <div className="space-y-10 mb-16">
+        <h2 className="head-text">Featured Projects</h2>
+        <p className="text-lg text-white/70 max-w-3xl font-light leading-relaxed">
+          A selection of projects I&apos;ve built, showcasing my skills in full-stack development, UI design, and problem-solving.
+        </p>
+      </div>
 
-      <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
-        <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 w-full">
+        <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl hover:border-white/20 hover:bg-white/10 transition-all duration-300">
           <div className="absolute top-0 right-0">
             <img src={currentProject.spotlight} alt="spotlight" className="w-full h-96 object-cover rounded-xl" />
           </div>
@@ -80,7 +85,7 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
+        <div className="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl h-96 md:h-full overflow-hidden">
           <Canvas>
             <ambientLight intensity={Math.PI} />
             <directionalLight position={[10, 10, 5]} />

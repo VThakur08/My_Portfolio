@@ -21,16 +21,16 @@ const Navbar = () => {
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md" >
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-lg border-b border-white/10">
             <div className="max-w-7xl mx-auto">
-                <div className="flex justify-between items-center py-5 mx-auto c-space">
-                    <a href="/" className="text-neutral-400 font-bold text-xl hover:text-white transition-colors">
-                        VKT
+                <div className="flex justify-between items-center py-4 mx-auto c-space">
+                    <a href="/" className="text-white font-bold text-lg hover:text-white/80 transition-colors duration-300">
+                        V.Thakur
                     </a>
 
                     <button
                         onClick={toggleMenu}
-                        className="text-neutral-400 hover:text-white focus:outline-none sm:hidden flex"
+                        className="text-white/60 hover:text-white focus:outline-none sm:hidden flex"
                         aria-label="Toggle menu">
                         <img src={isOpen ? 'assets/close.svg' : 'assets/menu.svg'} alt="toggle" className="w-6 h-6" />
                     </button>
@@ -41,11 +41,13 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className={`nav-sidebar ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
-                <nav className="p-5">
-                    <NavItems onClick={closeMenu} />
-                </nav>
-            </div>
+            {isOpen && (
+                <div className="nav-sidebar block sm:hidden">
+                    <nav className="p-5">
+                        <NavItems onClick={closeMenu} />
+                    </nav>
+                </div>
+            )}
         </header>
     );
 };

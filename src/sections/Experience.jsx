@@ -10,12 +10,17 @@ const WorkExperience = () => {
   const [animationName, setAnimationName] = useState('idle');
 
   return (
-    <section className="c-space my-20" id="work">
-      <div className="w-full text-white-600">
-        <p className="head-text">My Experience</p>
+    <section className="c-space my-32" id="work">
+      <div className="w-full">
+        <div className="space-y-10 mb-16">
+          <h2 className="head-text">Work Experience</h2>
+          <p className="text-lg text-white/70 max-w-3xl font-light leading-relaxed">
+            My professional journey includes working with innovative companies and collaborative teams to build impactful products.
+          </p>
+        </div>
 
         <div className="work-container">
-          <div className="work-canvas">
+          <div className="work-canvas border border-white/10 bg-white/5 backdrop-blur-sm">
             <Canvas>
               <ambientLight intensity={7} />
               <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
@@ -28,7 +33,7 @@ const WorkExperience = () => {
             </Canvas>
           </div>
 
-          <div className="work-content">
+          <div className="work-content border border-white/10 bg-white/5 backdrop-blur-sm">
             <div className="sm:py-10 py-5 sm:px-5 px-2.5">
               {workExperiences.map((item, index) => (
                 <div

@@ -16,7 +16,13 @@ const About = () => {
   };
 
   return (
-      <section className="c-space my-20" id="about">
+      <section className="c-space my-32" id="about">
+        <div className="space-y-10 mb-20">
+          <h2 className="head-text">About Me</h2>
+          <p className="text-lg text-white/70 max-w-3xl font-light leading-relaxed">
+            I&apos;m a passionate full-stack developer with a keen eye for design. I love building products that aren&apos;t just functional but also beautiful and intuitive. Based in Bengaluru, India, I&apos;m always excited to collaborate on innovative projects.
+          </p>
+        </div>
         <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
           <div className="col-span-1 xl:row-span-3">
             <div className="grid-container">

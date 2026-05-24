@@ -1,16 +1,35 @@
 @import url('https://fonts.cdnfonts.com/css/general-sans');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --color-background: #0a0a0f;
+    --color-surface: #14141b;
+    --color-surface-light: #1a1a23;
+    --color-accent: #6366f1;
+    --color-accent-dark: #4f46e5;
+    --color-accent-light: #818cf8;
+    --color-text: #ffffff;
+    --color-text-secondary: #a1a1aa;
+    --color-text-tertiary: #71717a;
+    --color-border: #27272e;
+}
+
 * {
     scroll-behavior: smooth;
 }
 
+html {
+    background: var(--color-background);
+}
+
 body {
-    background: #010103;
-    font-family: 'General Sans', sans-serif;
+    background: var(--color-background);
+    font-family: 'Inter', 'General Sans', sans-serif;
+    color: var(--color-text);
 }
 
 @layer utilities {
@@ -19,23 +38,23 @@ body {
     }
 
     .head-text {
-        @apply sm:text-4xl text-3xl font-semibold text-gray_gradient;
+        @apply sm:text-5xl text-4xl font-bold text-white mb-10;
     }
 
     .nav-ul {
-        @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+        @apply flex flex-col items-center gap-6 sm:flex-row md:gap-8 relative z-20;
     }
 
     .nav-li {
-        @apply text-neutral-400 hover:text-white font-generalsans max-sm:hover:bg-black-500 max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+        @apply text-white/60 hover:text-white max-sm:hover:bg-white/10 max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5 transition-colors duration-300;
     }
 
     .nav-li_a {
-        @apply text-lg md:text-base hover:text-white transition-colors;
+        @apply text-sm md:text-base font-medium transition-colors duration-300;
     }
 
     .nav-sidebar {
-        @apply absolute left-0 right-0 bg-black-200 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block;
+        @apply absolute left-0 right-0 bg-black/60 backdrop-blur-md border-t border-white/10 transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto;
     }
 
     .text-gray_gradient {
@@ -62,15 +81,15 @@ body {
 
     /* about section */
     .grid-container {
-        @apply w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5;
+        @apply w-full h-full border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl sm:p-7 p-4 flex flex-col gap-5 hover:border-white/20 hover:bg-white/10 transition-all duration-300;
     }
 
     .grid-headtext {
-        @apply text-xl font-semibold mb-2 text-white font-generalsans;
+        @apply text-xl font-bold mb-2 text-white;
     }
 
     .grid-subtext {
-        @apply text-[#afb0b6] text-base font-generalsans;
+        @apply text-white/70 text-base font-light leading-relaxed;
     }
 
     .copy-container {
@@ -79,11 +98,11 @@ body {
 
     /* projects section  */
     .arrow-btn {
-        @apply w-10 h-10 p-3 cursor-pointer active:scale-95 transition-all rounded-full arrow-gradient;
+        @apply w-10 h-10 p-3 cursor-pointer active:scale-95 transition-all rounded-full border border-white/20 hover:border-white/40 hover:bg-white/10;
     }
 
     .tech-logo {
-        @apply w-10 h-10 rounded-md p-2 bg-neutral-100 bg-opacity-10 backdrop-filter backdrop-blur-lg flex justify-center items-center;
+        @apply w-10 h-10 rounded-lg p-2 bg-white/10 border border-white/10 hover:border-white/20 backdrop-filter backdrop-blur-lg flex justify-center items-center transition-all duration-300;
     }
 
     /* clients section */
@@ -101,53 +120,65 @@ body {
 
     /*  work experience section */
     .work-container {
-        @apply grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12;
+        @apply grid lg:grid-cols-3 grid-cols-1 gap-8 mt-16;
     }
 
     .work-canvas {
-        @apply col-span-1 rounded-lg bg-black-200 border border-black-300;
+        @apply col-span-1 rounded-xl;
     }
 
     .work-content {
-        @apply col-span-2 rounded-lg bg-black-200 border border-black-300;
+        @apply col-span-2 rounded-xl;
     }
 
     .work-content_container {
-        @apply grid grid-cols-[auto_1fr] items-start gap-5  transition-all ease-in-out duration-500 cursor-pointer hover:bg-black-300 rounded-lg sm:px-5 px-2.5;
+        @apply grid grid-cols-[auto_1fr] items-start gap-5 transition-all ease-in-out duration-300 cursor-pointer hover:bg-white/5 rounded-lg sm:px-5 px-2.5 py-4;
     }
 
     .work-content_logo {
-        @apply rounded-3xl w-16 h-16 p-2 bg-black-600;
+        @apply rounded-2xl w-16 h-16 p-3 bg-white/10 border border-white/10 transition-all duration-300;
+    }
+
+    .work-content_container:hover .work-content_logo {
+        @apply border-white/20;
     }
 
     .work-content_bar {
-        @apply flex-1 w-0.5 mt-4 h-full bg-black-300 group-hover:bg-black-500 group-last:hidden;
+        @apply flex-1 w-0.5 mt-4 h-full bg-white/10 transition-colors duration-300;
+    }
+
+    .work-content_container:hover .work-content_bar {
+        @apply bg-white/20;
+    }
+
+    .work-content_bar {
+        @apply flex-1 w-0.5 mt-4 h-full bg-white/10 group-hover:bg-white/20 group-last:hidden transition-colors duration-300;
     }
 
     /* contact section */
     .contact-container {
-        @apply max-w-xl relative z-10 sm:px-10 px-5 mt-20 ;
+        @apply max-w-2xl relative z-10 sm:px-10 px-5;
     }
 
     .field-label {
-        @apply text-lg text-white-600;
+        @apply text-sm font-medium text-white/80 uppercase tracking-wider;
     }
 
     .field-input {
-        @apply w-full bg-black-300 px-5 py-2 min-h-14 rounded-lg placeholder:text-white-500 text-lg text-white-800 shadow-black-200 shadow-2xl focus:outline-none;
+        @apply w-full bg-white/5 border border-white/10 px-5 py-3 min-h-12 rounded-lg placeholder:text-white/40 text-base text-white backdrop-blur-sm hover:border-white/20 focus:border-white/30 focus:outline-none focus:bg-white/10 transition-all duration-300;
     }
 
     .field-btn {
-        @apply bg-black-500 px-5 py-2 min-h-12 rounded-lg shadow-black-200 shadow-2xl flex justify-center items-center text-lg text-white gap-3;
+        @apply bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 px-8 py-3 min-h-12 rounded-lg flex justify-center items-center text-base font-medium text-white gap-3 transition-all duration-300 disabled:opacity-50;
     }
 
     .field-btn_arrow {
-        @apply w-2.5 h-2.5 object-contain invert brightness-0;
+        @apply w-4 h-4 object-contain;
     }
 
     /*  footer */
     .social-icon {
-        @apply w-12 h-12 rounded-full flex justify-center items-center bg-black-300 border border-black-200;
+        @apply w-11 h-11 rounded-full flex justify-center items-center bg-white/10 border border-white/20 hover:border-white/40 hover:bg-white/20 transition-all duration-300 cursor-pointer;
     }
 }
 
