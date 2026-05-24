@@ -1,46 +1,39 @@
-// import { Leva } from 'leva';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useMediaQuery } from 'react-responsive';
 import { PerspectiveCamera } from '@react-three/drei';
-import Cube from '../components/Cube.jsx';
-import Rings from '../components/Rings.jsx';
-import ReactLogo from '../components/ReactLogo.jsx';
+import ModernCube from '../components/ModernCube.jsx';
+import GeometricRings from '../components/GeometricRings.jsx';
+import ModernTarget from '../components/ModernTarget.jsx';
 import Button from '../components/Button.jsx';
-import Target from '../components/Target.jsx';
 import CanvasLoader from '../components/Loading.jsx';
-import HeroCamera from '../components/HeroCamera.jsx';
-import { calculateSizes } from '../constants/index.js';
-import { HackerRoom } from '../components/HackerRoom.jsx';
+import ModernScene from '../components/ModernScene.jsx';
 
 const Hero = () => {
-    // Use media queries to determine screen size
-    const isSmall = useMediaQuery({ maxWidth: 480 }); // Standard mobile breakpoint
-    const isMobile = useMediaQuery({ minWidth: 481, maxWidth: 768 }); // Tablets & large phones
-    const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1024 }); // Standard tablets
-
-    const sizes = calculateSizes(isSmall, isMobile, isTablet);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
         <section className="min-h-screen w-full flex flex-col relative overflow-hidden" id="home">
             {/* 3D Canvas Background */}
             <div className="w-full h-full absolute inset-0">
-                <Canvas className="w-full h-full">
+                <Canvas camera={{ position: [0, 0, 20], fov: 75 }}>
                     <Suspense fallback={<CanvasLoader />}>
-                        <PerspectiveCamera makeDefault position={[0, 0, 20]} />
-                        <HeroCamera isMobile={isMobile}>
-                            <HackerRoom
-                                position={sizes.deskPosition}
-                                scale={sizes.deskScale}
-                                rotation={[0, -Math.PI, 0]} />
-                        </HeroCamera>
-
+                        <PerspectiveCamera makeDefault position={[0, 0, 18]} />
+                        
+                        {/* Modern 3D Scene */}
+                        <ModernScene position={[0, 0, 0]} scale={isMobile ? 0.6 : 0.8} />
+                        
+                        {/* Tech Elements */}
                         <group>
-                            <Target position={sizes.targetPosition} />
-                            <ReactLogo position={sizes.reactLogoPosition} />
-                            <Rings position={sizes.ringPosition} />
-                            <Cube position={sizes.cubePosition} />
+                            <ModernTarget position={[-8, 6, -5]} />
+                            <GeometricRings position={[8, -4, 0]} />
+                            <ModernCube position={[4, 4, -2]} />
                         </group>
+
+                        {/* Lighting */}
+                        <ambientLight intensity={0.9} />
+                        <pointLight position={[10, 10, 10]} intensity={1.2} color="#6366f1" />
+                        <pointLight position={[-10, -10, 10]} intensity={0.8} color="#818cf8" />
                     </Suspense>
                 </Canvas>
             </div>
