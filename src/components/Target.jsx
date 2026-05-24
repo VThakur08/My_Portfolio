@@ -1,42 +1,68 @@
-import { useGLTF } from '@react-three/drei';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
+import { Float } from '@react-three/drei';
 import gsap from 'gsap';
 
 const Target = (props) => {
     const targetRef = useRef();
-    // const { scene } = useGLTF(
-    //     'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/target-stand/model.gltf',
-    // );
 
     useGSAP(() => {
-        gsap.to(targetRef.current.position, {
-            y: targetRef.current.position.y + 0.5,
-            duration: 1.5,
+        gsap.to(targetRef.current.rotation, {
+            z: Math.PI * 2,
+            duration: 3,
             repeat: -1,
-            yoyo: true,
+            ease: 'none',
         });
     });
 
     return (
-        <mesh {...props} ref={targetRef} rotation={[0, Math.PI / 5, 0]} scale={1.6}>
-            <cylinderGeometry args={[0.5, 0.5, 0.1, 32]} />
-            <meshStandardMaterial color="#C1C1C1" />
-            
-            {/* Inner rings to look like a target */}
-            <mesh position={[0, 0.06, 0]}>
-                 <cylinderGeometry args={[0.3, 0.3, 0.11, 32]} />
-                 <meshStandardMaterial color="red" />
-            </mesh>
-            <mesh position={[0, 0.07, 0]}>
-                 <cylinderGeometry args={[0.15, 0.15, 0.12, 32]} />
-                 <meshStandardMaterial color="white" />
-            </mesh>
-             <mesh position={[0, 0.08, 0]}>
-                 <cylinderGeometry args={[0.05, 0.05, 0.13, 32]} />
-                 <meshStandardMaterial color="red" />
-            </mesh>
-        </mesh>
+        <Float floatIntensity={1.5} speed={2}>
+            <group {...props} ref={targetRef}>
+                {/* Outer ring */}
+                <mesh position={[0, 0, 0]}>
+                    <cylinderGeometry args={[1, 1, 0.05, 64]} />
+                    <meshStandardMaterial 
+                        color="#6366f1" 
+                        emissive="#6366f1"
+                        emissiveIntensity={0.6}
+                        metalness={0.8}
+                        roughness={0.2}
+                    />
+                </mesh>
+
+                {/* Middle ring */}
+                <mesh position={[0, 0.01, 0]}>
+                    <cylinderGeometry args={[0.65, 0.65, 0.06, 64]} />
+                    <meshStandardMaterial 
+                        color="#818cf8" 
+                        emissive="#818cf8"
+                        emissiveIntensity={0.4}
+                    />
+                </mesh>
+
+                {/* Inner circle */}
+                <mesh position={[0, 0.02, 0]}>
+                    <cylinderGeometry args={[0.3, 0.3, 0.07, 64]} />
+                    <meshStandardMaterial 
+                        color="#a5b4fc" 
+                        emissive="#a5b4fc"
+                        emissiveIntensity={0.5}
+                        metalness={0.9}
+                        roughness={0.1}
+                    />
+                </mesh>
+
+                {/* Center dot */}
+                <mesh position={[0, 0.03, 0]}>
+                    <sphereGeometry args={[0.1, 32, 32]} />
+                    <meshStandardMaterial 
+                        color="#818cf8"
+                        emissive="#818cf8"
+                        emissiveIntensity={0.8}
+                    />
+                </mesh>
+            </group>
+        </Float>
     );
 };
 

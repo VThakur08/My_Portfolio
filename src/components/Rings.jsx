@@ -1,5 +1,5 @@
 import { useGSAP } from '@gsap/react';
-import { Center, useTexture } from '@react-three/drei';
+import { Center } from '@react-three/drei';
 import gsap from 'gsap';
 import { useCallback, useRef } from 'react';
 
@@ -10,8 +10,6 @@ const Rings = ({ position }) => {
       refList.current.push(mesh);
     }
   }, []);
-
-  const texture = useTexture('textures/rings.png');
 
   useGSAP(
     () => {
@@ -30,10 +28,9 @@ const Rings = ({ position }) => {
           refList.current.map((r) => r.rotation),
           {
             y: `+=${Math.PI * 2}`,
-            x: `-=${Math.PI * 2}`,
-            duration: 2.5,
+            duration: 3,
             stagger: {
-              each: 0.15,
+              each: 0.2,
             },
           },
         );
@@ -43,13 +40,22 @@ const Rings = ({ position }) => {
     },
   );
 
+  // Modern ring colors with gradient effect
+  const ringColors = ['#6366f1', '#818cf8', '#a5b4fc', '#c7d2fe'];
+
   return (
     <Center>
-      <group scale={0.5}>
+      <group scale={0.8} position={[0, 0, 0]}>
         {Array.from({ length: 4 }, (_, index) => (
           <mesh key={index} ref={getRef}>
-            <torusGeometry args={[(index + 1) * 0.5, 0.1]}></torusGeometry>
-            <meshMatcapMaterial matcap={texture} toneMapped={false} />
+            <torusGeometry args={[(index + 1) * 0.6, 0.08, 16, 100]}></torusGeometry>
+            <meshStandardMaterial 
+              color={ringColors[index]} 
+              emissive={ringColors[index]}
+              emissiveIntensity={0.8}
+              toneMapped={false}
+              wireframe={false}
+            />
           </mesh>
         ))}
       </group>
